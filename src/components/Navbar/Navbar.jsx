@@ -1,5 +1,8 @@
-function Navbar({ setCurrency }) {
+import currencyStore from  '../../State/Money';
+function Navbar() {
 
+    const { setCurrency } = currencyStore();
+    
     return (
         <div className="navbar bg-base-100">
             <div className="navbar-start">

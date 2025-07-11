@@ -1,13 +1,15 @@
-import { useState } from "react";
+
 import { fetchCoinData } from "../../service/fetchCoinData";
 import { useQuery } from "@tanstack/react-query";
+import currencyStore from  '../../State/Money';
+import pageCount from "../../State/pageCount";
+function CoinTable() {
+  const { count, inc, dec } = pageCount();
 
-function CoinTable({ currency }) {
-  const [page, setPage] = useState(1);
-  
+const { currency } = currencyStore();
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: ["coins", page, currency],
-    queryFn: () => fetchCoinData(page, currency),
+    queryKey: ["coins", count, currency],
+    queryFn: () => fetchCoinData(count, currency),
     cacheTime: 1000 * 60 * 2,
     staleTime: 1000 * 60 * 2,
     // retry: 2,
@@ -58,14 +60,14 @@ function CoinTable({ currency }) {
 
       <div className="flex items-center justify-center gap-4">
         <button
-          disabled={page === 1}
-          onClick={() => setPage(page - 1)}
+          disabled={count === 1}
+          onClick={dec}
           className="text-2xl text-white btn btn-primary btn-wide"
         >
           Prev
         </button>
         <button
-          onClick={() => setPage(page + 1)}
+          onClick={inc}
           className="text-2xl text-white btn btn-secondary btn-wide"
         >
           Next
