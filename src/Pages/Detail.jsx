@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { fetchCoinDetail } from "../service/fetchCoinDetail";
 import currencyStore from '../State/Money';
 import parse from 'html-react-parser';
+import CoinChart from '../components/CoinChart/CoinChart';
 
 
 
@@ -10,8 +11,7 @@ function Detail() {
 
     const { coinId } = useParams();
     const { currency } = currencyStore();
-
-    const { isError, isLoading, data: coin } = useQuery({
+    const { isError,error, isLoading, data: coin } = useQuery({
   queryKey: ["coin", coinId],
   queryFn: () => fetchCoinDetail(coinId),
   cacheTime: 1000 * 60 * 2,
@@ -22,9 +22,9 @@ function Detail() {
         return <div>Loading...</div>
     }
 
-    if(isError) {
-        return <div>Error: Something went wrong</div>
-    }
+    if (isError) {
+    return <div>Error: {error.message}</div>;
+  }
 
     return (
         <div className="flex flex-col md:flex-row">
@@ -54,7 +54,7 @@ function Detail() {
                     className="flex flex-col w-full md:flex-row md:justify-around"
                 >
                     <div 
-                        className="flex items-center mb-4 md:mb-0"
+                        className="flex items-center self-center mb-4 md:mb-0"
                     >
                         <h2 className="text-xl font-bold ">
                             Rank
@@ -64,7 +64,7 @@ function Detail() {
                         </span>
                     </div>
 
-                    <div className="flex items-center mb-4 md:mb-0">
+                    <div className="flex items-center self-center mb-4 md:mb-0">
                         <h2 className="text-xl font-bold text-yellow-400 ">
                             Current Price
                         </h2>
@@ -77,11 +77,15 @@ function Detail() {
             </div>
 
             <div className="w-full p-6 md:w-2/3">
-                Coin Information
-            </div>
+                     <CoinChart id={coinId}  />
+              </div>
+
+
 
         </div>
+
     )
+    
 }
 
 export default Detail;

@@ -1,10 +1,14 @@
 
-
-import Home from "./Pages/Home";
-import Detail from "./Pages/Detail";
+import { useEffect } from "react";
 import Routing from "./Routing/Routing";
 
+
+
 function App() {
+
+    useEffect(() => {
+    document.documentElement.setAttribute("data-theme", "forest");
+  }, []);
 
   return(
     <Routing/>
