@@ -45,7 +45,7 @@ function Detail() {
                 </h1>
 
                 <p
-                    className="w-full px-6 py-4 text-justify"
+                    className="w-full px-6 py-4 text-justify text-xl/2"
                 >
                     {parse(coin?.description?.en)}
                 </p>

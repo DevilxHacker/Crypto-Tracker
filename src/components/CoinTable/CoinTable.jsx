@@ -44,7 +44,7 @@ const { currency } = currencyStore();
             return (
               <div
                 key={coin.id}
-                className="flex items-center justify-between w-full px-2 py-4 font-semibold text-black bg-transparent cursor-pointer"
+                className="flex items-center justify-between w-full px-2 py-4 font-semibold text-black bg-transparent border-2 border-solid cursor-pointer"
                 onClick={()=> handleCoinDetail(coin.id)}
               >
                 <div className="flex items-center justify-start gap-3 basis-[35%] ">

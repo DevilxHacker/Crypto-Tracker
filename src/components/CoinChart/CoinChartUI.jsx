@@ -36,19 +36,20 @@ function CoinChartUI({ coin, id, currency }) {
   };
   return (
     <>
-      <Line data={data} options={options} />;
       <div className="flex justify-center w-3/4 gap-3 m-auto">
      
         <div className="flex">
           <select onChange={(e) => setDay(Number(e.target.value))}>
             <option disabled>Select Day</option>
             <option value="7">7 Days</option>
-            <option value="30">30 Days</option>
+            <option selected="true" value="30" >30 Days</option>
             <option value="180">6 Months</option>
             <option value="365">1 Year</option>
           </select>
         </div>
       </div>
+      <Line data={data} options={options} />
+    
     </>
   );
 }
