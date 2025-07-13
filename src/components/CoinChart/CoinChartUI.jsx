@@ -1,9 +1,7 @@
-import IntervalCount from "../../State/IntervalCount";
 import DayCount from "../../State/DayCount";
 import { Line } from "react-chartjs-2";
 
 function CoinChartUI({ coin, id, currency }) {
-  const { setInterval } = IntervalCount();
   const { setDay } = DayCount();
 
   const labels = coin.prices.map(([timestamp]) =>
@@ -40,17 +38,10 @@ function CoinChartUI({ coin, id, currency }) {
     <>
       <Line data={data} options={options} />;
       <div className="flex justify-center w-3/4 gap-3 m-auto">
-        <div className="flex">
-          <select onChange={(e) => setInterval(e.target.value)}>
-            <option disabled>Select Interval</option>
-            <option value="">None</option>
-            <option value="daily">Daily</option>
-          </select>
-        </div>
+     
         <div className="flex">
           <select onChange={(e) => setDay(Number(e.target.value))}>
             <option disabled>Select Day</option>
-            <option value="1">1 Day</option>
             <option value="7">7 Days</option>
             <option value="30">30 Days</option>
             <option value="180">6 Months</option>
