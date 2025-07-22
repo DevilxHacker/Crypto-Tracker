@@ -39,7 +39,7 @@ function Detail() {
                 />
 
                 <h1
-                    className="mb-5 text-4xl font-bold"
+                    className="mb-5 text-4xl font-bold text-center md:text-5xl md:mb-10 md:text-left md:px-6"
                 >
                     {coin?.name}
                 </h1>
